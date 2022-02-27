@@ -155,14 +155,14 @@ def start():
         start()  
 
     #opens and splits passwordlist
-    with open(wordlist, 'r') as x:
+    with open(wordlist, 'r', encoding="ISO-8859-1") as x:
         passwordlist = x.read().splitlines()
 
     #opens proxy list and reads lines
-    proxylist = open(proxyfile).read().splitlines()
+    proxylist = open(proxyfile, encoding="ISO-8859-1").read().splitlines()
 
     #counts number of proxies
-    file = open(proxyfile,"r")
+    file = open(proxyfile,"r", encoding="ISO-8859-1")
     proxylimit = 0
     Content = file.read()
     CoList = Content.split("\n")
