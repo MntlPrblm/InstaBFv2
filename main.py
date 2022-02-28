@@ -1,14 +1,13 @@
 #imports
-import random
 import requests
 import os
 from colorama import Fore, init
-init()
 #colorama.Fore.LIGHTCYAN_EX
 from time import sleep
 from datetime import datetime
 
 usernamecheckerflag = False
+init()
 
 #function to clear screen
 def clear():
@@ -17,16 +16,6 @@ def clear():
     else:
         _ = os.system('clear')
 
-#function to change location
-def change_location():
-	codeList = ["TR", "US-C", "US", "US-W", "CA", "CA-W","FR", "DE", "NL", "NO", "RO", "CH", "GB", "HK"]
-        
-	choicecode = random.choice(codeList)
-        
-	try:
-		os.system("windscribe connect " + choicecode)
-	except:
-		print("error")
 
 #function for logging in
 def login(username, password, proxy, proxynumber):
@@ -97,17 +86,8 @@ def login(username, password, proxy, proxynumber):
             print(Fore.LIGHTGREEN_EX+"Credentials: Username: "+username+" Password: "+password)
             quit()
         if '"spam":true' in data:
-            if os.name != "posix":
-                print(Fore.LIGHTRED_EX+"IP blacklisted, switch vpn locations")
-                quit()
-            else:
-                locationlist = ["TR", "US-C", "US", "US-W", "CA", "CA-W","FR", "DE", "NL", "NO", "RO", "CH", "GB", "HK"]
-                location = random.choice(locationlist)
-                try:
-                    os.system("windscribe connect "+location)
-                except:
-                    os.system("windscribe disconnect")
-
+            print(Fore.LIGHTRED_EX+"IP blacklisted, switch vpn locations")
+            quit()
         if '"Please wait a few minutes before' in data:
             print(Fore.WHITE+"Settling, changing proxies...")
             sleep(180)
@@ -155,14 +135,14 @@ def start():
         start()  
 
     #opens and splits passwordlist
-    with open(wordlist, 'r', encoding="ISO-8859-1") as x:
+    with open(wordlist, 'r') as x:
         passwordlist = x.read().splitlines()
 
     #opens proxy list and reads lines
-    proxylist = open(proxyfile, encoding="ISO-8859-1").read().splitlines()
+    proxylist = open(proxyfile, 'r').read().splitlines()
 
     #counts number of proxies
-    file = open(proxyfile,"r", encoding="ISO-8859-1")
+    file = open(proxyfile,"r")
     proxylimit = 0
     Content = file.read()
     CoList = Content.split("\n")
@@ -184,3 +164,4 @@ def start():
 
 if __name__=="__main__":
     start()
+
