@@ -7,6 +7,6 @@ Make sure your proxies work with Instagram, I suggest stormproxies
 
 # Instructions
 git clone https://github.com/MntlPrblm/InstaBFv2.git  
-pip install -r requirenments.txt  
+pip install -r requirements.txt  
 python InstaBFv2.py
 
